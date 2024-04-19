@@ -6,6 +6,17 @@ server:
     idle-timeout: 15s
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: edge-service
+            client-secret: polar-keycloak-secret
+            scope: openid
+        provider:
+          keycloak: # registration id, defined upper
+            issuer-uri: http://localhost:8080/realms/PolarBookshop
   application:
     name: edge-service
   config:
