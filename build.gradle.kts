@@ -37,6 +37,8 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.springframework.security:spring-security-test")
+
+	runtimeOnly("io.github.resilience4j:resilience4j-micrometer")
 }
 
 dependencyManagement {
