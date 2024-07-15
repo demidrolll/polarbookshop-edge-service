@@ -22,6 +22,7 @@ extra["springCloudVersion"] = "2023.0.0"
 extra["testcontainersVersion"] = "1.17.3"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")

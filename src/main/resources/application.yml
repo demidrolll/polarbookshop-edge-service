@@ -13,7 +13,7 @@ spring:
           keycloak:
             client-id: edge-service
             client-secret: polar-keycloak-secret
-            scope: openid
+            scope: openid,roles
         provider:
           keycloak: # registration id, defined upper
             issuer-uri: http://localhost:8080/realms/PolarBookshop
@@ -66,6 +66,7 @@ spring:
           max-life-time: 60s
       default-filters:
         - SaveSession
+        - TokenRelay
         - name: RequestRateLimiter
           args:
             redis-rate-limiter:
@@ -98,9 +99,10 @@ spring:
 
 
 logging:
+  group:
+    circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker, org.springframework.retry
   level:
-    org.springframework.retry: DEBUG
-    io.github.resilience4j: DEBUG
+    circuitbreaker: DEBUG
 
 resilience4j:
   circuitbreaker:
@@ -114,4 +116,19 @@ resilience4j:
     configs:
       default:
         timeoutDuration: 5s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,redis
 
