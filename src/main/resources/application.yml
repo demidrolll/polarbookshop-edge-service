@@ -103,6 +103,8 @@ logging:
     circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker, org.springframework.retry
   level:
     circuitbreaker: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j:
   circuitbreaker:
@@ -134,4 +136,3 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-
